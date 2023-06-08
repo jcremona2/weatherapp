@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block content %}
+<div class="flex justify-center items-center h-screen">
+  <div class="bg-gray-200 p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Weather Information</h1>
+    <form action="" id="weatherForm" class="mb-4">
+    {% csrf_token %}
+      <div class="flex space-x-2">
+        <input type="text" name="city" placeholder="City" class="p-2 border border-gray-300 rounded">
+        <input type="text" name="country" placeholder="Country" class="p-2 border border-gray-300 rounded">
+        <button id="fetchButton" class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" type="button">Fetch</button>
+      </div>
+    </form>
+    <div id="weatherInfo" class="hidden bg-gray-100 p-4 rounded-md mt-4">
+        <div id="weatherIconContainer" class="mt-4">
+            <img id="weatherIcon" src="" alt="Weather Icon" />
+        </div>
+        <p id="temperature" class="mb-2">
+            <span class="font-bold">Temperature:</span> <span id="temperatureValue"></span>
+        </p>
+        <p id="humidity" class="mb-2">
+            <span class="font-bold">Humidity:</span> <span id="humidityValue"></span>
+        </p>
+        <p id="windSpeed" class="mb-2">
+            <span class="font-bold">Wind Speed:</span> <span id="windSpeedValue"></span>
+        </p>
+        <p id="weatherDescription">
+            <span class="font-bold">Weather Description:</span> <span id="weatherDescriptionValue"></span>
+        </p>
+
+    </div>
+    <p id="error" class="text-red-500 font-bold hidden"></p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+    <script src="{% static 'js/weather.js' %}"></script>
+{% endblock %}
+
+
+
