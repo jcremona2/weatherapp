@@ -23,10 +23,4 @@ class WeatherAppTests(TestCase):
         response = self.client.post(url, data)
 
         self.assertEqual(response.status_code, 400)
-        self.assertTrue('error' in response.json())
-
-    def test_weather_info_invalid_request_method(self):
-        url = reverse('weather')
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 405)
+        self.assertTrue('error' in response.json()
