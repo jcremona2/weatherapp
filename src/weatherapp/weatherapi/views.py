@@ -9,7 +9,7 @@ class WeatherView(View):
     """
     View class for retrieving weather information using OpenWeatherMap API.
     """
-    template = "layout/weather.html"
+    template = 'layout/weather.html'
     
     def get(self, request):
         return render(request, self.template)
