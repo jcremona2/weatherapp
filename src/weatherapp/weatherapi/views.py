@@ -6,6 +6,9 @@ from apicredentials import API_KEY
 import requests
 
 class WeatherView(View):
+    """
+    View class for retrieving weather information using OpenWeatherMap API.
+    """
     template = "layout/weather.html"
     
     def get(self, request):
@@ -19,7 +22,7 @@ class WeatherView(View):
         weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={api_key}&units=metric'
         response = requests.get(weather_url).json()
 
-        if response['cod'] == 200:
+        if if response['cod'] == 200 and country != "" and city != "":
             # Get information
             temperature = response['main'].get('temp')
             humidity = response['main'].get('humidity')
