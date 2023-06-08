@@ -54,7 +54,7 @@ class WeatherView(View):
         elif response['cod'] == 429:
             error_message = 'Too many requests. Quota exceeded'
             return JsonResponse({'error': error_message}, status=429)
-        elif response['cod'] >= 500:
+        elif int(response['cod']) >= 500:
             error_message = 'Unexpected error'
             return JsonResponse({'error': error_message}, status=500)
         else:
