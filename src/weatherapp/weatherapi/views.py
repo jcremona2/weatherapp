@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from apicredentials import API_KEY
 import requests
 
+
 class WeatherView(View):
     """
     View class for retrieving weather information using OpenWeatherMap API.
@@ -15,8 +16,8 @@ class WeatherView(View):
         return render(request, self.template)
 
     def post(self, request):
-        city = request.POST.get('city','')
-        country = request.POST.get('country','')
+        city = request.POST.get('city', '')
+        country = request.POST.get('country', '')
 
         api_key = API_KEY
         weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={api_key}&units=metric'
@@ -30,10 +31,8 @@ class WeatherView(View):
             weather_description = response['weather'][0].get('description')
             weather_icon = response['weather'][0].get('icon')
             timezone = response.get('timezone')
-
-            # icon URL 
+ 
             icon_url = f'http://openweathermap.org/img/w/{weather_icon}.png'
-
 
             data = {
                 'success': True,
