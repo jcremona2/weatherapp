@@ -15,14 +15,14 @@ class WeatherView(View):
         return render(request, self.template)
 
     def post(self, request):
-        city = request.POST.get('city')
-        country = request.POST.get('country')
+        city = request.POST.get('city','')
+        country = request.POST.get('country','')
 
         api_key = API_KEY
         weather_url = f'https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={api_key}&units=metric'
         response = requests.get(weather_url).json()
 
-        if if response['cod'] == 200 and country != "" and city != "":
+        if if response['cod'] == 200 and country != '' and city != '':
             # Get information
             temperature = response['main'].get('temp')
             humidity = response['main'].get('humidity')
